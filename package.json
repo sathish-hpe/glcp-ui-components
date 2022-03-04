@@ -1,0 +1,107 @@
+{
+  "name": "glcp-ui-components",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "start-storybook -p 6006 -s public",
+    "lint": "eslint --max-warnings=0 ./src --ext .js",
+    "build-storybook": "build-storybook -s public",
+    "test": "react-scripts test --coverage --watchAll=false --env=jsdom",
+    "build": "NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src --out-dir dist",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{json,css,html,md}": [
+      "npx prettier --write '**/*.{json,css,html,md}' --ignore-path ./.prettierignore"
+    ],
+    "*.js": [
+      "npx prettier --write '*.js' --ignore-path ./.prettierignore",
+      "eslint --max-warnings=0 --ignore-pattern '!.eslintrc.js' ./src --ext .js --no-ignore ./.storybook"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test"
+    }
+  },
+  "dependencies": {
+    "grommet": "^2.21.0",
+    "grommet-icons": "^4.7.0",
+    "grommet-theme-hpe": "^2.3.0",
+    "react-scripts": "5.0.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "styled-components": ">= 5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/addon-storyshots": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/preset-create-react-app": "^4.0.1",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "0.0.9",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.3",
+    "@testing-library/user-event": "^13.5.0",
+    "babel-loader": "^8.2.3",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^26.1.1",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.2",
+    "husky": "^7.0.4",
+    "jest-styled-components": "^7.0.8",
+    "lint-staged": "^12.3.4",
+    "prettier": "^2.5.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "storybook-addon-designs": "^6.2.1",
+    "styled-components": "^5.2.1",
+    "webpack": "^5.70.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

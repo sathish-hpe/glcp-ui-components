@@ -1,0 +1,12 @@
+
+#dependencies
+/node_modules
+
+#product
+/build
+
+#testing
+/coverage
+
+#snapshots
+__snapshots__
